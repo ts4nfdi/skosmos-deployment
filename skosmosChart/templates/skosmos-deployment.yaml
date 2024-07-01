@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skosmos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skosmos
+  template:
+    metadata:
+      labels:
+        app: skosmos
+    spec:
+      containers:
+      - name: skosmos
+        image: {{ .Values.skosmos.image.repository }}:{{ .Values.skosmos.image.tag }}
+        ports:
+        - containerPort: 80

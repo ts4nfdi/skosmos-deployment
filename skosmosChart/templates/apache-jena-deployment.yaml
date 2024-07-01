@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-jena
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-jena
+  template:
+    metadata:
+      labels:
+        app: apache-jena
+    spec:
+      containers:
+      - name: apache-jena
+        image: {{ .Values.apacheJena.image.repository }}:{{ .Values.apacheJena.image.tag }}
+        ports:
+        - containerPort: 3030

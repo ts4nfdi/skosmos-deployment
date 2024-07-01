@@ -1,0 +1,15 @@
+skosmos:
+  image:
+    repository: skosmos
+    tag: test
+  service:
+    type: ClusterIP
+    port: 80
+
+apacheJena:
+  image:
+    repository: jena-fuseki
+    tag: 4.8.0
+  service:
+    type: ClusterIP
+    port: 3030
