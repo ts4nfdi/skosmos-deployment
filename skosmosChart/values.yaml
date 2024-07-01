@@ -1,15 +1,15 @@
 skosmos:
   image:
-    repository: skosmos
-    tag: test
+    repository: pooyaolad/skosmos
+    tag: latest
   service:
     type: ClusterIP
     port: 80
 
 apacheJena:
   image:
-    repository: jena-fuseki
-    tag: 4.8.0
+    repository: pooyaolad/apache-jena
+    tag: latest
   service:
     type: ClusterIP
     port: 3030

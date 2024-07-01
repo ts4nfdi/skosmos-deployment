@@ -13,7 +13,22 @@ spec:
         app: apache-jena
     spec:
       containers:
-      - name: apache-jena
-        image: {{ .Values.apacheJena.image.repository }}:{{ .Values.apacheJena.image.tag }}
-        ports:
-        - containerPort: 3030
+        - name: jena-fuseki
+          image: {{ .Values.apacheJena.image.repository }}:{{ .Values.apacheJena.image.tag }}
+          ports:
+            - containerPort: 3030
+          env:
+            - name: JAVA_OPTIONS
+              value: "-Xmx2g -Xms1g"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /fuseki"              
+          args:
+            - "--config=/fuseki/skosmos.ttl"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: apache-jena
+            items:
+            - key: skosmos.ttl
+              path: skosmos.ttl
